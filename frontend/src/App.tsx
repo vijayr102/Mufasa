@@ -487,7 +487,8 @@ function App() {
               setTestDataError(null);
               try {
                 const res = await axios.post('/api/generate-test-data', { fields: testDataFields });
-                setTestDataResults(res.data.results || []);
+                const data = res.data as { results?: any[] };
+                setTestDataResults(data.results || []);
               } catch (err) {
                 setTestDataError('Failed to generate test data');
               } finally {
